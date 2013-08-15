@@ -247,7 +247,8 @@
         enabled_langs = return_lang_settings();
 
         if (!enabled_langs.length) {
-            enabled_langs.push(DEFAULT_LANG)
+            enabled_langs.push(DEFAULT_LANG);
+            enabled_langs.push('wikidata');
         }
         for (var i = 0; i < enabled_langs.length + 1; i ++) {
             var lang = enabled_langs[i];
@@ -261,16 +262,28 @@
     })
     </script>
 <link href='css/style.css' rel='stylesheet' type='text/css'>
+<link href='css/microtiles.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div id='header'>
+    <!-- <div id='header'>
       <span class="about-link">
         <span id="volumeWrapper" class="interface">
           <span id="volumeSlider" class="noUiSlider"></span>
         </span><a id="about-link" href="">about</a> & <a href="http://blog.hatnote.com/">blog</a></span>
       <h1>Listen to Wikipedia</h1>
+    </div> -->
+    <div id='area'>
+        <div id="mt-info">
+            <h1>Listen to Wikipedia</h1>
+            <p>The sounds indicate edits to Wikipedia articles. Bell sounds note an addition and strings a subtraction from an article. The pitch changes according to the size of the edit. Green circles show edits from unregistered contributors, and purple circles mark edits performed by automated bots.</p>
+            <p>You are currently hearing sounds from the English Wikepedia and Wikidata automated bots.</p>
+            <p>Wikidata is a free knowledge base that can be read and edited by humans and machines alike. It is for data what Wikimedia Commons is for media files: it centralizes access to and management of structured data, such as interwiki references and statistical information. Wikidata contains data in every language supported by the MediaWiki software.</p>
+            <p>Many edits relate to authority control data. In library science, authority control is a process that organizes library catalog and bibliographic information by using a single, distinct name for each topic. These one-of-a-kind headings are applied consistently throughout the catalog, and work with other organizing data such as linkages and cross references.</p>
+            <p>A lot of this authority data has been incorporated into Wikipedia. By December 2012 VIAFbot had edited 250,000 articles to create reciprocal links to the Virtual International Authority File.</p>
+            <p>For more information on Listen to Wikipedia and to hear the streams for other languages, visit http://listen.hatnote.com/</p>
+            <p>Built by Stephen LaPorte and Mahmoud Hashemi.</p>
+        </div>
     </div>
-    <div id='area'></div>
     <div id='content'>
         <div class='bg'>
             <div id='rc-log-c'>
@@ -299,13 +312,5 @@
         <p>This project is built using <a href='http://d3js.org'>D3</a> and <a href='https://github.com/goldfire/howler.js'>HowlerJS</a>. It is based on <a href='http://www.listentobitcoin.com/'>Listen to Bitcoin</a> by <a href='https://github.com/MaxLaumeister'>Maximillian Laumeister</a>. Our source is <a href='https://github.com/hatnote/listen-to-wikipedia'>available on GitHub</a>, and you can read more about this project.</p>
         <p>Built by <a href='http://github.com/slaporte'>Stephen LaPorte</a> and <a href='http://github.com/mahmoud'>Mahmoud Hashemi</a>.
     </div>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40320359-1', 'hatnote.com');
-    ga('send', 'pageview');
-    </script>
 </body>
 </html>

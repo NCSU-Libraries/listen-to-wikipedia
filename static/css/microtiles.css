@@ -1,0 +1,28 @@
+#mt-info {
+  float: right;
+  width: 25%;
+  height: 100%;
+  background-color: #1A1E22;
+  color: white;
+}
+
+#mt-info h1 {
+  color: white;
+}
+
+#area svg {
+  width: 75%;
+  float: left;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+p {
+  margin: 20px;
+}
+
+.article-label {
+  font: 30px sans-serif;
+}
