@@ -15,6 +15,10 @@
 
     <script src="js/jquery.nouislider.min.js"></script>
     <script src="js/howler.min.js"></script>
+
+    <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+    <script src="js/pusher.js"></script>
+
     <script>
       var global_mute = false;
       var global_volume = 50;
@@ -274,14 +278,23 @@
     </div> -->
     <div id='area'>
         <div id="mt-info">
+            <div id="active_languages">
+                <ul>
+                    <li class="en">English</li>
+                    <li class="wikidata">Wikidata</li>
+                </ul>
+            </div>
             <h1>Listen to Wikipedia</h1>
+
             <p>The sounds indicate edits to Wikipedia articles. Bell sounds note an addition and strings a subtraction from an article. The pitch changes according to the size of the edit. Green circles show edits from unregistered contributors, and purple circles mark edits performed by automated bots.</p>
-            <p>You are currently hearing sounds from the English Wikepedia and Wikidata automated bots.</p>
+            <p>You are currently hearing sounds from the Wikipedia languages at the top left.</p>
             <p>Wikidata is a free knowledge base that can be read and edited by humans and machines alike. It is for data what Wikimedia Commons is for media files: it centralizes access to and management of structured data, such as interwiki references and statistical information. Wikidata contains data in every language supported by the MediaWiki software.</p>
             <p>Many edits relate to authority control data. In library science, authority control is a process that organizes library catalog and bibliographic information by using a single, distinct name for each topic. These one-of-a-kind headings are applied consistently throughout the catalog, and work with other organizing data such as linkages and cross references.</p>
             <p>A lot of this authority data has been incorporated into Wikipedia. By December 2012 VIAFbot had edited 250,000 articles to create reciprocal links to the Virtual International Authority File.</p>
+            <p class="controller">To control which languages are displayed go to: http://d.lib.ncsu.edu/l2w</p>
             <p>For more information on Listen to Wikipedia and to hear the streams for other languages, visit http://listen.hatnote.com/</p>
             <p>Built by Stephen LaPorte and Mahmoud Hashemi.</p>
+
         </div>
     </div>
     <div id='content'>

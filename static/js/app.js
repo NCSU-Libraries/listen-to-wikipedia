@@ -193,6 +193,14 @@ wikipediaSocket.init = function(ws_url, lid, svg_area) {
                             rc_str += ' <span class="log-undo">(undo)</span>';
                         }
                         rc_str += ' <span class="lang">(' + lid + ')</span>';
+
+                        // change the active languages to bold for a moment
+                        $('#active_languages ul li.' + lid).css('font-weight', 'bold');
+                        setTimeout(function(){
+                            $('#active_languages ul li.' + lid).css('font-weight', 'normal');
+                        },300);
+                        //
+
                         log_rc(rc_str, 20);
 
                         wp_action(data, svg_area);
@@ -404,18 +412,18 @@ var epm_container = {};
 function update_epm(epm, svg_area) {
     if (!epm_text) {
         epm_container = svg_area.append('g')
-            .attr('transform', 'translate(0, ' + (height - 25) + ')');
+            .attr('transform', 'translate(0, ' + (height - 50) + ')');
 
         var epm_box = epm_container.append('rect')
             .attr('fill', newuser_box_color)
             .attr('opacity', 0.5)
-            .attr('width', 135)
-            .attr('height', 25);
+            .attr('width', 320)
+            .attr('height', 50);
 
         epm_text = epm_container.append('text')
             .classed('newuser-label', true)
-            .attr('transform', 'translate(5, 18)')
-            .style('font-size', '.8em')
+            .attr('transform', 'translate(5, 32)')
+            .style('font-size', '32px')
             .text(epm + ' edits per minute');
 
     } else if (epm_text.text) {

@@ -1,0 +1,17 @@
+<div>
+  <p>Select the languages you want displayed on the Hunt Library MicroTile Immersion Theater wall.</p>
+  <%= form_tag api_submit_path do %>
+    <ul id="languages">
+      <% WIKIPEDIA_LANGUAGES.each do |language| %>
+        <li>
+          <%= check_box_tag "language[#{language[0]}]", "1", @enabled_languages[language[0]] ? true : false %>
+          <%= label_tag "language[#{language[0]}]", language[1] %>
+        </li>
+      <% end %>
+    </ul>
+    <span id="submit_btn">
+    <%= submit_tag 'Submit', class: [:btn, 'btn-large', 'btn-success'] %>
+    </span>
+  <% end %>
+
+</div>

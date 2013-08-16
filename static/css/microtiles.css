@@ -1,6 +1,6 @@
 #mt-info {
   float: right;
-  width: 25%;
+  width: 18%;
   height: 100%;
   background-color: #1A1E22;
   color: white;
@@ -8,10 +8,20 @@
 
 #mt-info h1 {
   color: white;
+  font-size: 70px;
+}
+
+#mt-info p {
+  font-size: 32px;
+}
+
+#mt-info .controller {
+  font-size: 40px;
+  font-weight: bold;
 }
 
 #area svg {
-  width: 75%;
+  width: 82%;
   float: left;
 }
 
@@ -26,3 +36,23 @@ p {
 .article-label {
   font: 30px sans-serif;
 }
+
+#active_languages {
+  position:absolute;
+  top: 0;
+  left:0;
+  background-color: rgba(41, 128, 185, 0.5);
+  padding: 10px;
+  /*opacity: 0.5;*/
+}
+
+#active_languages ul {
+  padding: 0;
+  margin: 0;
+}
+
+#active_languages li{
+  list-style-type: none;
+  font-size: 32px;
+}
+
