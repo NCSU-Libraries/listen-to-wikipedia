@@ -4,21 +4,34 @@
   height: 100%;
   background-color: #1A1E22;
   color: white;
+  overflow: scroll;
 }
+
+#mt-info img {
+  width: 100%;
+}
+
+@media (min-width: 6000px) {
+  #mt-info h1 {
+    font-size: 70px;
+  }
+  #mt-info p {
+    font-size: 32px;
+  }
+
+  #mt-info .controller {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}
+
+
 
 #mt-info h1 {
   color: white;
-  font-size: 70px;
 }
 
-#mt-info p {
-  font-size: 32px;
-}
 
-#mt-info .controller {
-  font-size: 40px;
-  font-weight: bold;
-}
 
 #area svg {
   width: 82%;
