@@ -1,5 +1,7 @@
 <h1>About Listen to Wikipedia</h1>
 
+<p><%= link_to 'Control Listen to Wikipedia in Hunt Library', root_path, class: :btn %></p>
+
 <h2>Links</h2>
 <ul>
   <li><%= link_to 'Original Listen to Wikipedia', 'http://listen.hatnote.com/' %> built by Stephen LaPorte and Mahmoud Hashemi. Thanks to them for releasing the code as open source.</li>
@@ -12,7 +14,7 @@
 </ul>
 
 <h2>Technologies</h2>
-<p>The <%= link_to 'original Listen to Wikipedia', 'http://listen.hatnote.com/' %> is a single page application that connects via WebSockets to streams of data from <%= link_to 'wikimon', 'https://github.com/hatnote/wikimon' %>, which monitors for changes in Wikipedia. This single page application was updated by NCSU Libraries to listen on another WebSocket connection to receive messages from the controller application and change the languages displayed. The site that you're reading now is the controller application which is written in Rails and simply sends messages to a message queue. It also listens for changes from other users of the controller application to keep its view of selected languages updated.</p>
+<p>The <%= link_to 'original Listen to Wikipedia', 'http://listen.hatnote.com/' %> is a single page application that connects via WebSockets to streams of data from <%= link_to 'wikimon', 'https://github.com/hatnote/wikimon' %>, which monitors for changes to Wikipedia. This single page application was updated by NCSU Libraries to listen on another WebSocket connection to receive messages from this controller application and change the languages displayed. The site that you're reading now is the controller application which is written in Rails and sends messages to Listen to Wikipedia through a message queue. The controller also listens for changes from other users of the controller application to keep its view of selected languages updated.</p>
 
 <h2>Contact</h2>
 <p>???</p>
