@@ -2,7 +2,7 @@ L2wControl::Application.routes.draw do
   post "api/submit"
   get "api/push_update"
   get "pages/index"
-  get "pages/about"
+  get 'about' => "pages#about", as: :about
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
