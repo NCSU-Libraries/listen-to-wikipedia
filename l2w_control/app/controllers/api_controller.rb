@@ -38,7 +38,7 @@ class ApiController < ApplicationController
   end
 
   def submit_token
-    if valid_tokens_include?(params[:token])
+    if current_tokens.include?(params[:token])
       session[:token] = params[:token]
     else
       flash[:notice] = "You submitted an invalid token. Tokens only last for N minutes."
