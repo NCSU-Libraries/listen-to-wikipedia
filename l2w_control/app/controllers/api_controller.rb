@@ -47,12 +47,11 @@ class ApiController < ApplicationController
   end
 
   def current_token
-    # if request.xhr?
-      render text: current_tokens.last
-    # end
-  end
+    if request.xhr?
+      render json: {token: current_tokens.last}
 
-  private
+    end
+  end
 
   def push_update
     Pusher['listen_to_wikipedia'].trigger('update', {
@@ -60,5 +59,9 @@ class ApiController < ApplicationController
     })
     head 200
   end
+
+  private
+
+
 
 end
