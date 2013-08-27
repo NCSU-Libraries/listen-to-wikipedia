@@ -47,10 +47,7 @@ class ApiController < ApplicationController
   end
 
   def current_token
-    if request.xhr?
-      render json: {token: current_tokens.last}
-
-    end
+    render json: {token: current_tokens.last}
   end
 
   def push_update
