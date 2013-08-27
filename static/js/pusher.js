@@ -20,11 +20,27 @@ channel.bind('update', function(data) {
 
 channel.bind('pusher:subscription_succeeded', function() {
   setTimeout(function(){
-     $.ajax({
+    $.ajax({
       url: "http://d.lib.ncsu.edu/l2w/api/push_update"
     });
   },2000);
 });
 
 
+function get_current_token(){
+  $.ajax({
+    url: "http://d.lib.ncsu.edu/l2w/api/current_token"
+  }).done(function(data){
+    $('.token').html(data.token);
+  });
+}
+
+
+$(function () {
+  get_current_token();
+});
+
+setTimeout(function(){
+  get_current_token();
+},20000);
 
