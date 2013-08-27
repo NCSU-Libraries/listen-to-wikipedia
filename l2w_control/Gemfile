@@ -6,7 +6,9 @@ gem 'thin'
 gem 'bootstrap-sass'
 gem 'guard-livereload'
 gem 'pusher'
-
+# gem 'modernizr'
+# gem 'geocoder'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'pry-rails'

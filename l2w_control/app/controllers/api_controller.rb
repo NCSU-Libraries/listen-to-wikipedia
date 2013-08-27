@@ -1,4 +1,14 @@
 class ApiController < ApplicationController
+
+  before_filter :check_cookies, only: [:submit]
+
+  def catchall
+    if current_tokens.include?(params[:path])
+      session[:token] = params[:path]
+    end
+    redirect_to root_path
+  end
+
   def submit
     if params['language']
       previous_enabled_languages = load_enabled_languages
@@ -17,7 +27,6 @@ class ApiController < ApplicationController
         fh.puts YAML.dump(current_enabled_languages)
       end
 
-      # TODO: Send a push message
       Pusher['listen_to_wikipedia'].trigger('update', {
         message: current_enabled_languages
       })
@@ -27,6 +36,23 @@ class ApiController < ApplicationController
 
     redirect_to :back if !request.xhr?
   end
+
+  def submit_token
+    if valid_tokens_include?(params[:token])
+      session[:token] = params[:token]
+    else
+      flash[:notice] = "You submitted an invalid token. Tokens only last for N minutes."
+    end
+    redirect_to root_path
+  end
+
+  def current_token
+    # if request.xhr?
+      render text: current_tokens.last
+    # end
+  end
+
+  private
 
   def push_update
     Pusher['listen_to_wikipedia'].trigger('update', {

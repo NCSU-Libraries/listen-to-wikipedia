@@ -1,8 +1,14 @@
 L2wControl::Application.routes.draw do
   post "api/submit"
+  post "api/submit_token"
+  get 'api/current_token'
+
   get "api/push_update"
   get "pages/index"
   get 'about' => "pages#about", as: :about
+
+  # get 'api/geofence', as: :geofence
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -58,4 +64,7 @@ L2wControl::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '*path' => 'api#catchall'
+
 end

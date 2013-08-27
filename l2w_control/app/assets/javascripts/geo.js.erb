@@ -1,0 +1,42 @@
+// Not used.
+
+function get_location() {
+  if (Modernizr.geolocation) {
+    navigator.geolocation.getCurrentPosition(geofence, handle_geofence_error, {enableHighAccuracy: true, maximumAge: 75000});
+  } else {
+    // no native support; maybe try a fallback?
+  }
+}
+
+function geofence_notice(){
+  $('#notices').append('<div class="alert">You must allow geographic location of your device to determine you are near the wall OR be on the Hunt Library wireless network.</div>');
+}
+
+function geofence(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  console.log([latitude, longitude]);
+  $.ajax({
+      url: '<%= L2wControl::Application.routes.url_helpers.geofence_path %>',
+      data: {latitude: latitude, longitude: longitude}
+    }).done(function(data, text_status, xhr){
+      if (text_status === 'success'){
+        $('input.submit_btn').removeAttr('disabled');
+      } else {
+        geofence_notice();
+      }
+    });
+
+}
+
+function handle_geofence_error(err) {
+  if (err.code == 1) {
+    geofence_notice();
+  }
+}
+
+$(function () {
+  if ($('input.submit_btn[disabled=disabled]').length > 0) {
+    get_location();
+  }
+});
