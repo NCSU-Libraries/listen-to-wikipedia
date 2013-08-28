@@ -83,6 +83,7 @@ wikipediaSocket.init = function(ws_url, lid) {
 
                         var data_url = data.url.replace(/&oldid=\d{1,100}/, '');
                         data_url = data_url.replace('?diff=', '?oldid=');
+                        data_url += '&mobileaction=toggle_view_mobile'
 
                         rc_str += ' <a href="' + data_url + '" target="_blank">' + data.page_title ;
 
