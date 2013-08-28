@@ -154,7 +154,7 @@ $(function () {
   if ($('#wikimon_changes').length > 0) {
 
         $.ajax({
-          url: '<%= L2wControl::Application.routes.url_helpers.current_langs_path %>'
+          url: '<%= L2wControl::Application.routes.url_helpers.current_langs_url %>'
         }).done(function(data){
           show_wikimon_changes(data);
         });
