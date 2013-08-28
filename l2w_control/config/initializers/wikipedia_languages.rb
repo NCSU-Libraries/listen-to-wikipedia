@@ -27,14 +27,17 @@ WIKIPEDIA_LANGUAGES = {
 }
 
 # Don't want to set up a database for this so we'll just use a YAML file to save state
-
-yaml_to_write = {}
-WIKIPEDIA_LANGUAGES.keys.each do |key|
-  yaml_to_write[key] = false
-  yaml_to_write[key] = true if [:wikidata, :en].include?(key)
-end
-
 ENABLED_LANGUAGES_FILEPATH = File.join(Rails.root, 'tmp', 'enabled_languages.yml')
-File.open(ENABLED_LANGUAGES_FILEPATH, 'w') do |fh|
-  fh.puts YAML.dump(yaml_to_write)
+
+if !File.exist? ENABLED_LANGUAGES_FILEPATH
+  yaml_to_write = {}
+  WIKIPEDIA_LANGUAGES.keys.each do |key|
+    yaml_to_write[key] = false
+    yaml_to_write[key] = true if [:wikidata, :en].include?(key)
+  end
+
+
+  File.open(ENABLED_LANGUAGES_FILEPATH, 'w') do |fh|
+    fh.puts YAML.dump(yaml_to_write)
+  end
 end

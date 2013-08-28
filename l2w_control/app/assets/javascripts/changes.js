@@ -1,5 +1,3 @@
-
-
     var wikimon_langs = {
         'en': ['English', 'ws://wikimon.hatnote.com:9000'],
         'de': ['German', 'ws://wikimon.hatnote.com:9010'],
@@ -37,7 +35,8 @@
     }
 };
 
-    function wikipediaSocket() {}
+function wikipediaSocket() {}
+var wikimon_changes_play = true;
 
 wikipediaSocket.init = function(ws_url, lid) {
     this.connect = function() {
@@ -52,24 +51,24 @@ wikipediaSocket.init = function(ws_url, lid) {
             this.connection = connection;
 
             // connection.onopen = function() {
-            //     console.log('Connection open to ' + lid);
+            //     // console.log('Connection open to ' + lid);
             //     $('#' + lid + '-status').html('(connected)');
             // };
 
             // connection.onclose = function() {
-            //     console.log('Connection closed to ' + lid);
+            //     // console.log('Connection closed to ' + lid);
             //     $('#' + lid + '-status').html('(closed)');
             // };
 
             // connection.onerror = function(error) {
             //     $('#' + lid + '-status').html('Error');
-            //     console.log('Connection Error to ' + lid + ': ' + error);
+            //     // console.log('Connection Error to ' + lid + ': ' + error);
             // };
 
             connection.onmessage = function(resp) {
                 var data = JSON.parse(resp.data);
 
-                if (data.ns == 'Main') {
+                if (data.ns == 'Main' && wikimon_changes_play) {
                     if (!isNaN(data.change_size)) {
                         if (data.summary &&
                             (data.summary.toLowerCase().indexOf('revert') > -1 ||
@@ -79,34 +78,41 @@ wikipediaSocket.init = function(ws_url, lid) {
                         } else {
                             data.revert = false;
                         }
-                        var rc_str = '<a href="http://' + lid + '.wikipedia.org/wiki/User:' + data.user + '" target="_blank">' + data.user + '</a>';
-                        if (data.change_size < 0) {
-                            if (data.change_size == -1) {
-                                rc_str += ' removed ' + Math.abs(data.change_size) + ' byte from';
-                            } else {
-                                rc_str += ' removed ' + Math.abs(data.change_size) + ' bytes from';
-                            }
-                        } else if (data.change_size === 0) {
-                            rc_str += ' edited';
-                        } else {
-                            if (data.change_size == 1) {
-                                rc_str += ' added ' + Math.abs(data.change_size) + ' byte to';
-                            } else {
-                                rc_str += ' added ' + Math.abs(data.change_size) + ' bytes to';
-                            }
-                        }
+                        var rc_str = ''
+                        // link to article
+                        rc_str += ' <a href="' + data.url + '" target="_blank">' + data.page_title ;
 
-                        rc_str += ' <a href="' + data.url + '" target="_blank">' + data.page_title + '</a> ';
-                        if (data.is_anon) {
-                            rc_str += ' <span class="log-anon">(unregistered user)</span>';
-                        }
-                        if (data.is_bot) {
-                            rc_str += ' <span class="log-bot">(bot)</span>';
-                        }
-                        if (data.revert) {
-                            rc_str += ' <span class="log-undo">(undo)</span>';
-                        }
-                        rc_str += ' <span class="lang">(' + lid + ')</span>';
+                        //rc_str += '<a href="http://' + lid + '.wikipedia.org/wiki/User:' + data.user + '" target="_blank">' + data.user + '</a>';
+
+                        rc_str += ' <span class="lang">(' + wikimon_langs[lid][0] + ')</span>';
+
+                        // if (data.change_size < 0) {
+                        //     if (data.change_size == -1) {
+                        //         rc_str += ' removed ' + Math.abs(data.change_size) + ' byte';
+                        //     } else {
+                        //         rc_str += ' removed ' + Math.abs(data.change_size) + ' bytes';
+                        //     }
+                        // } else if (data.change_size === 0) {
+                        //     rc_str += ' edited';
+                        // } else {
+                        //     if (data.change_size == 1) {
+                        //         rc_str += ' added ' + Math.abs(data.change_size) + ' byte';
+                        //     } else {
+                        //         rc_str += ' added ' + Math.abs(data.change_size) + ' bytes';
+                        //     }
+                        // }
+
+
+                        // if (data.is_anon) {
+                        //     rc_str += ' <span class="log-anon">(unregistered user)</span>';
+                        // }
+                        // if (data.is_bot) {
+                        //     rc_str += ' <span class="log-bot">(bot)</span>';
+                        // }
+                        // if (data.revert) {
+                        //     rc_str += ' <span class="log-undo">(undo)</span>';
+                        // }
+
 
                         // change the active languages to bold for a moment
                         // $('#active_languages ul li.' + lid).css('font-weight', 'bold');
@@ -114,6 +120,8 @@ wikipediaSocket.init = function(ws_url, lid) {
                         //     $('#active_languages ul li.' + lid).css('font-weight', 'normal');
                         // },300);
                         //
+
+                        rc_str += '</a> ';
 
                         log_rc(rc_str, 20);
 
@@ -139,26 +147,25 @@ wikipediaSocket.close = function() {
 };
 
 
-
-
-    // channel.bind('update', function(data) {
-    //   for (var key in data.message) {
-    //     if (data.message[key] == true){
-    //       SOCKETS[key] = new wikipediaSocket.init(wikimon_langs[key][1], key);
-    //     } else {
-    //       SOCKETS[key].close();
-    //     }
-    //   }
-    // });
 $(function () {
+  $('#changes_play').hide();
+  $('#changes_pause').on('click', function(){
+    wikimon_changes_play = false;
+    $('#changes_pause').hide();
+    $('#changes_play').show();
+  });
+  $('#changes_play').on('click', function(){
+    wikimon_changes_play = true;
+    $('#changes_play').hide();
+    $('#changes_pause').show();
+  });
+
+
   if ($('#wikimon_changes').length > 0) {
-
-        $.ajax({
-          url: 'http://d.lib.ncsu.edu/l2w/api/current_langs'
-        }).done(function(data){
-          show_wikimon_changes(data);
-        });
-
+    $.ajax({
+      url: 'http://d.lib.ncsu.edu/l2w/api/current_langs'
+    }).done(function(data){
+      show_wikimon_changes(data);
+    });
   }
 });
-
