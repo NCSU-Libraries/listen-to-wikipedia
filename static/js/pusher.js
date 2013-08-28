@@ -32,6 +32,9 @@ function get_current_token(){
     url: "http://d.lib.ncsu.edu/l2w/api/current_token"
   }).done(function(data){
     $('.token').html(data.token);
+    $('#qrcode').html('');
+    $('#qrcode').qrcode({width: 200,height: 200,text: "http://d.lib.ncsu.edu/l2w/" + data.token + "/qr"});
+    set_timeout_get_current_token();
   });
 }
 
@@ -40,7 +43,9 @@ $(function () {
   get_current_token();
 });
 
-setTimeout(function(){
-  get_current_token();
-},20000);
+function set_timeout_get_current_token(){
+  setTimeout(function(){
+    get_current_token();
+  },60000);
+}
 

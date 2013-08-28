@@ -3,8 +3,15 @@ class ApiController < ApplicationController
   before_filter :check_cookies, only: [:submit]
 
   def catchall
-    if current_tokens.include?(params[:path])
-      session[:token] = params[:path]
+    path = params[:path].dup
+    if path.match %r{/qr}
+      path = path.slice(0,3)
+      UrlSourceLogger.info 'QR'
+    else
+      UrlSourceLogger.info 'URL'
+    end
+    if current_tokens.include?(path)
+      session[:token] = path
     end
     redirect_to root_path
   end
