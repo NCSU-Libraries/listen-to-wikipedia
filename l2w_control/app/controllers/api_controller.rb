@@ -64,6 +64,10 @@ class ApiController < ApplicationController
     head 200
   end
 
+  def current_langs
+    render json: load_enabled_languages
+  end
+
   private
 
 

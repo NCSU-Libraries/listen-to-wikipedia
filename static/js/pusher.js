@@ -10,8 +10,8 @@ channel.bind('update', function(data) {
   for (var key in data.message) {
     $('#active_languages .' + key).remove();
     if (data.message[key] == true){
-      enable(key)
-      $('#active_languages ul').append('<li class="' + key + '">'+ langs[key][0] + '</li>')
+      enable(key);
+      $('#active_languages ul').append('<li class="' + key + '">'+ langs[key][0] + '</li>');
     } else {
       disable(key);
     }

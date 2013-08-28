@@ -152,11 +152,13 @@ wikipediaSocket.close = function() {
     // });
 $(function () {
   if ($('#wikimon_changes').length > 0) {
-    setTimeout(function() {
+
         $.ajax({
-          url: "http://d.lib.ncsu.edu/l2w/api/push_update"
+          url: '<%= L2wControl::Application.routes.url_helpers.current_langs_path %>'
+        }).done(function(data){
+          show_wikimon_changes(data);
         });
-    }, 2000);
+
   }
 });
 
