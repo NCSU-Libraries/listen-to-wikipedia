@@ -80,7 +80,11 @@ wikipediaSocket.init = function(ws_url, lid) {
                         }
                         var rc_str = ''
                         // link to article
-                        rc_str += ' <a href="' + data.url + '" target="_blank">' + data.page_title ;
+
+                        var data_url = data.url.replace(/&oldid=\d{1,100}/, '');
+                        data_url = data_url.replace('?diff=', '?oldid=');
+
+                        rc_str += ' <a href="' + data_url + '" target="_blank">' + data.page_title ;
 
                         //rc_str += '<a href="http://' + lid + '.wikipedia.org/wiki/User:' + data.user + '" target="_blank">' + data.user + '</a>';
 
