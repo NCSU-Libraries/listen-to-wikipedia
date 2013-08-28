@@ -78,18 +78,22 @@ wikipediaSocket.init = function(ws_url, lid) {
                         } else {
                             data.revert = false;
                         }
-                        var rc_str = ''
+
                         // link to article
 
                         var data_url = data.url.replace(/&oldid=\d{1,100}/, '');
                         data_url = data_url.replace('?diff=', '?oldid=');
-                        data_url += '&mobileaction=toggle_view_mobile'
+                        data_url += '&mobileaction=toggle_view_mobile';
 
-                        rc_str += ' <a href="' + data_url + '" target="_blank">' + data.page_title ;
+                        var rc_str = '';
+
+                        rc_str += ' <a href="' + data_url + '" target="_blank">'
+                        rc_str += ' <span class="lang">(' + wikimon_langs[lid][0] + ')</span>';
+                        rc_str += data.page_title ;
 
                         //rc_str += '<a href="http://' + lid + '.wikipedia.org/wiki/User:' + data.user + '" target="_blank">' + data.user + '</a>';
 
-                        rc_str += ' <span class="lang">(' + wikimon_langs[lid][0] + ')</span>';
+
 
                         // if (data.change_size < 0) {
                         //     if (data.change_size == -1) {
