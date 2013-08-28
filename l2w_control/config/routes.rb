@@ -6,6 +6,7 @@ L2wControl::Application.routes.draw do
   get "api/push_update"
   get "pages/index"
   get 'about' => "pages#about", as: :about
+  get 'changes' => "pages#changes", as: :changes
 
   # get 'api/geofence', as: :geofence
 

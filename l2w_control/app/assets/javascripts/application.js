@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require reconnecting_websocket
 //= require pusher
+//= require changes
