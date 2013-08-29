@@ -3,6 +3,7 @@ L2wControl::Application.routes.draw do
   post "api/submit_token"
   get 'api/current_token'
   get 'api/current_langs', as: :current_langs
+  post 'api/pusher_authenticate', as: :pusher_authenticate
 
   get "api/push_update"
   get "pages/index"

@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
 
   before_filter :check_cookies, only: [:submit]
+  protect_from_forgery :except => :pusher_authenticate
 
   def catchall
     path = params[:path].dup
@@ -34,7 +35,7 @@ class ApiController < ApplicationController
         fh.puts YAML.dump(current_enabled_languages)
       end
 
-      Pusher['listen_to_wikipedia'].trigger('update', {
+      Pusher['presence-listen_to_wikipedia'].trigger('update', {
         message: current_enabled_languages
       })
     else
@@ -58,7 +59,7 @@ class ApiController < ApplicationController
   end
 
   def push_update
-    Pusher['listen_to_wikipedia'].trigger('update', {
+    Pusher['presence-listen_to_wikipedia'].trigger('update', {
       message: load_enabled_languages
     })
     head 200
@@ -66,6 +67,14 @@ class ApiController < ApplicationController
 
   def current_langs
     render json: load_enabled_languages
+  end
+
+  def pusher_authenticate
+    auth_data = {
+      user_id: SecureRandom.random_number(10000000)
+    }
+    response = Pusher['presence-listen_to_wikipedia'].authenticate(params[:socket_id], auth_data)
+    render :json => response
   end
 
   private

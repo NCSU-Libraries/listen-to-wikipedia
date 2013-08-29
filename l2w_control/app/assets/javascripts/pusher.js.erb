@@ -1,5 +1,5 @@
-var pusher = new Pusher('bef9976092c8ba1e7452');
-var channel = pusher.subscribe('listen_to_wikipedia');
+var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: '<%= L2wControl::Application.routes.url_helpers.pusher_authenticate_url %>'});
+var channel = pusher.subscribe('presence-listen_to_wikipedia');
 var SOCKETS = {};
 
 function show_wikimon_changes(data){
