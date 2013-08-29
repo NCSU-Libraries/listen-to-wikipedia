@@ -18,7 +18,7 @@
 <% else -%>
   <p>To control the Hunt wall you must enter the 3 character token on the wall.</p>
   <%= form_tag api_submit_token_path do %>
-    <%= text_field_tag(:token, nil, autocapitalize:"off", autocorrect: "off") %>
+    <%= text_field_tag(:token, nil, autocapitalize:"off", autocorrect: "off", maxlength: 3, id: 'token_input') %>
     <%= submit_tag 'Submit' %>
   <% end %>
   <p>Or <%= link_to 'See current changes', changes_path %></p>
