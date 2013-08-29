@@ -27,13 +27,29 @@ channel.bind('update', function(data) {
 });
 
 channel.bind('pusher:subscription_succeeded', function(members){
-  console.log("Count", members.count)
+  members.each(check_members);
+  // console.log("Count", members.count)
 })
 
 channel.bind('pusher:member_removed', function(member){
-  console.log("Count", channel.members.count)
+  if (member.id.indexOf("wall_") == 0 ) {
+    $('#offline').show();
+    $('#online').hide();
+  }
+  // console.log("Count", channel.members.count)
 })
 
 channel.bind('pusher:member_added', function(member){
-  console.log("Count", channel.members.count)
+  if (member.id.indexOf("wall_") == 0 ) {
+    $('#offline').hide();
+    $('#online').show();
+  }
+  // console.log("Count", channel.members.count)
 })
+
+function check_members(member){
+  if (member.id.indexOf("wall_") == 0 ) {
+    $('#offline').hide();
+    $('#online').show();
+  }
+}

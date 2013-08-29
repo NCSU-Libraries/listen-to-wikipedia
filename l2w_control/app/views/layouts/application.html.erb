@@ -12,6 +12,13 @@
   <%= render '/layouts/navbar' %>
   <div class="container">
 
+    <div>The L2W exhibit is:
+      <span id="offline"><span class="label">offline</span></span>
+    <span id="online"><span class="label label-success">online</span></span>
+    </div>
+
+
+
     <% [:notice, :error, :alert].each do |level| %>
       <% unless flash[level].blank? %>
         <div class="alert <%= flash_class(level) %>">
