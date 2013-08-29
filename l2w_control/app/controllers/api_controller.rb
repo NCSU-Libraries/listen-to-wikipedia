@@ -49,7 +49,7 @@ class ApiController < ApplicationController
     if current_tokens.include?(params[:token])
       session[:token] = params[:token]
     else
-      flash[:notice] = "You submitted an invalid token. Tokens only last for N minutes."
+      flash[:notice] = "You submitted an invalid token. Tokens only last for 5 minutes."
     end
     redirect_to root_path
   end
