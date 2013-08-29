@@ -28,27 +28,30 @@ channel.bind('update', function(data) {
 
 channel.bind('pusher:subscription_succeeded', function(members){
   members.each(check_members);
+  $('#controller_count').html(members.count);
   // console.log("Count", members.count)
 })
 
 channel.bind('pusher:member_removed', function(member){
-  if (member.id.indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("wall_") == 0 ) {
     $('#offline').show();
     $('#online').hide();
   }
+  $('#controller_count').html(channel.members.count);
   // console.log("Count", channel.members.count)
 })
 
 channel.bind('pusher:member_added', function(member){
-  if (member.id.indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("wall_") == 0 ) {
     $('#offline').hide();
     $('#online').show();
   }
+  $('#controller_count').html(channel.members.count);
   // console.log("Count", channel.members.count)
 })
 
 function check_members(member){
-  if (member.id.indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("wall_") == 0 ) {
     $('#offline').hide();
     $('#online').show();
   }

@@ -9,4 +9,8 @@ class PagesController < ApplicationController
   def changes
   end
 
+  def admin
+
+  end
+
 end
