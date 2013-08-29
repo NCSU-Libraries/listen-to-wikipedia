@@ -25,3 +25,15 @@ channel.bind('update', function(data) {
     location.reload();
   }
 });
+
+channel.bind('pusher:subscription_succeeded', function(members){
+  console.log("Count", members.count)
+})
+
+channel.bind('pusher:member_removed', function(member){
+  console.log("Count", channel.members.count)
+})
+
+channel.bind('pusher:member_added', function(member){
+  console.log("Count", channel.members.count)
+})

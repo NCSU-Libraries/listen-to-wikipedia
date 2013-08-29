@@ -4,8 +4,8 @@
 //   }
 // };
 
-var pusher = new Pusher('bef9976092c8ba1e7452');
-var channel = pusher.subscribe('listen_to_wikipedia');
+var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://d.lib.ncsu.edu/l2w/api/wall_authenticate'});
+var channel = pusher.subscribe('presence-listen_to_wikipedia');
 channel.bind('update', function(data) {
   for (var key in data.message) {
     $('#active_languages .' + key).remove();

@@ -78,6 +78,16 @@ class ApiController < ApplicationController
     render :json => response
   end
 
+  # refactor this so that there is just one authenticate endpoint!
+  def wall_authenticate
+    session[:user_id] ||= "wall_" + SecureRandom.random_number(10000000).to_s
+    auth_data = {
+      user_id: session[:user_id]
+    }
+    response = Pusher['presence-listen_to_wikipedia'].authenticate(params[:socket_id], auth_data)
+    render :json => response
+  end
+
   private
 
 
