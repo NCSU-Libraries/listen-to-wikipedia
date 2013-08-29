@@ -17,7 +17,7 @@
 <p>The <%= link_to 'original Listen to Wikipedia', 'http://listen.hatnote.com/' %> is a single page application that connects via WebSockets to streams of data from <%= link_to 'wikimon', 'https://github.com/hatnote/wikimon' %>, which monitors for changes to Wikipedia. This single page application was updated by NCSU Libraries to listen on another WebSocket connection to receive messages from this controller application and change the languages displayed. The site that you're reading now is the controller application which is written in Rails and sends messages to Listen to Wikipedia through a message queue. The controller also listens for changes from other users of the controller application to keep its view of selected languages updated.</p>
 
 <h2>Contact</h2>
-<p>???</p>
+<p>For information on this exhibit, contact <%= mail_to 'jnronall@ncsu.edu', 'Jason Ronallo' %>.</p>
 
 
 
