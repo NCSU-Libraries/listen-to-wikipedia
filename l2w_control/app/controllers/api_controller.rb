@@ -70,8 +70,9 @@ class ApiController < ApplicationController
   end
 
   def pusher_authenticate
+    session[:user_id] ||= SecureRandom.random_number(10000000)
     auth_data = {
-      user_id: SecureRandom.random_number(10000000)
+      user_id: session[:user_id]
     }
     response = Pusher['presence-listen_to_wikipedia'].authenticate(params[:socket_id], auth_data)
     render :json => response
