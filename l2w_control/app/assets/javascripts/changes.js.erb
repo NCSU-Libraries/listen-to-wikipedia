@@ -172,7 +172,7 @@ $(function () {
 
   if ($('#wikimon_changes').length > 0) {
     $.ajax({
-      url: 'http://d.lib.ncsu.edu/l2w/api/current_langs'
+      url:  '<%= L2wControl::Application.routes.url_helpers.current_langs_url %>'  //'http://d.lib.ncsu.edu/l2w/api/current_langs'
     }).done(function(data){
       show_wikimon_changes(data);
     });
