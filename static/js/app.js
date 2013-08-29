@@ -101,6 +101,7 @@ function wp_action(data, svg_area) {
     });
 
     if (s_titles) {
+        // Set the duration of the text below
         var text = circle_container.append('text')
             .text(label_text)
             .classed('article-label', true)
@@ -108,7 +109,7 @@ function wp_action(data, svg_area) {
             .transition()
             .delay(1000)
             .style('opacity', 0)
-            .duration(2000)
+            .duration(5000)
             .each('end', function() { no_label = true; })
             .remove();
     } else {
@@ -305,13 +306,13 @@ function newuser_action(data, lid, svg_area) {
         .attr('opacity', 1)
         .attr('fill', newuser_box_color)
         .attr('width', width)
-        .attr('height', 35);
+        .attr('height', 65);
 
     var y = width / 2;
 
     user_container.append('text')
         .classed('newuser-label', true)
-        .attr('transform', 'translate(' + y +', 25)')
+        .attr('transform', 'translate(' + y +', 45)')
         .transition()
         .delay(1500)
         .duration(1000)
@@ -412,18 +413,18 @@ var epm_container = {};
 function update_epm(epm, svg_area) {
     if (!epm_text) {
         epm_container = svg_area.append('g')
-            .attr('transform', 'translate(0, ' + (height - 50) + ')');
+            .attr('transform', 'translate(0, ' + (height - 100) + ')');
 
         var epm_box = epm_container.append('rect')
             .attr('fill', newuser_box_color)
             .attr('opacity', 0.5)
-            .attr('width', 320)
-            .attr('height', 50);
+            .attr('width', 620)
+            .attr('height', 150);
 
         epm_text = epm_container.append('text')
             .classed('newuser-label', true)
-            .attr('transform', 'translate(5, 32)')
-            .style('font-size', '32px')
+            .attr('transform', 'translate(5, 64)')
+            .style('font-size', '64px')
             .text(epm + ' edits per minute');
 
     } else if (epm_text.text) {

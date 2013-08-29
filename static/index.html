@@ -224,14 +224,13 @@
             }))
         }
 
-        /*
-        function testuser() {
-            data = {user: 'Slaporte'}
-            newuser_action(data, 'en', svg)
-        }
 
-        testuser()
-        */
+        // function testuser() {
+        //     data = {user: 'Slaporte'}
+        //     newuser_action(data, 'en', svg)
+        // }
+        // testuser()
+
 
         for (lang in langs) {
             if (langs.hasOwnProperty(lang)) {
@@ -280,26 +279,30 @@
     <div id='area'>
         <div id="mt-info">
             <div id="active_languages">
+
+                <h1>Interact with<br>Listen to Wikipedia!</h1>
+
+                <p>Control which languages are displayed and read current articles:</p>
+
+                <p id="control_url">http://d.lib.ncsu.edu/l2w/<span class="token"></span> </p>
+
+                <p>...or scan this QR code with your mobile device:</p>
+
+                <div id="qrcode"></div>
+
+                <p id="current_token">Current access token: <span class="token"></span></p>
+
                 <ul>
                     <li class="en">English</li>
                     <li class="wikidata">Wikidata</li>
                 </ul>
+
             </div>
             <h1>Listen to Wikipedia</h1>
 
-            <p>The sounds you are hearing represent the edits being made to Wikipedia articles. You are currently hearing sounds from the Wikipedia languages at the top left. </p>
+            <p>The sounds you are hearing represent the edits being made to Wikipedia articles.</p>
 
-            <p>To control which languages are displayed, go to:</p>
-
-            <p>http://d.lib.ncsu.edu/l2w/<span class="token"></span> </p>
-
-            <p>...or scan this QR code with your mobile device:</p>
-
-            <div id="qrcode"></div>
-
-            <p>Current token: <span class="token"></span></p>
-
-            <p>Bell sounds note an addition to an article and strings a subtraction. The pitch changes according to the size of the edit, as does the size of the circles. Green circles show edits from unregistered contributors, and purple circles mark edits performed by automated bots.</p>
+            <p>Bell sounds note an addition to an article and strings a subtraction. The pitch changes according to the size of the edit, as does the size of the circles. Green circles show edits from unregistered contributors, and purple circles mark edits performed by automated bots. The position of the circles is psuedo-random. An edit to the same article shows up in the same location. When new users join Wikipedia, they are displayed at the top of the page.</p>
 
            <p>Many automated edits relate to authority control data. In library science, authority control is a process that organizes library catalog and bibliographic information by using a single, distinct name for each topic. These one-of-a-kind headings are applied consistently throughout the catalog, and work with other organizing data such as linkages and cross references. Organizations like the Library of Congress, the German National Library, and the National Library of Sweden have long been creating such authority files. </p>
 
