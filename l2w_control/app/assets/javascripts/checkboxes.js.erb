@@ -1,3 +1,5 @@
+var checkbox_update_alert;
+
 $(function () {
   $('#submit_button_for_languages_checkboxes').hide();
 
@@ -32,7 +34,7 @@ $(function () {
     });
   });
 
-  function checkbox_update_alert(message, alert_type){
+  checkbox_update_alert = function(message, alert_type){
     var notice = '<div class="checkbox_change_alert '+ alert_type +'">' + message + '</div>';
     $('body').append(notice);
     $('.checkbox_change_alert').fadeOut(2000, function() { $(this).remove(); });

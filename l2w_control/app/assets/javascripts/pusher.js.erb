@@ -25,13 +25,14 @@ channel.bind('update', function(data) {
     if (data){
       jQuery.each(data.message, function(language, language_boolean){
         console.log(language + ": " + language_boolean)
+        // If it is true check the box if it isn't uncheck the box
         if (language_boolean){
           $('#language_' + language).prop('checked', true);
         } else {
           $('#language_' + language).prop('checked', false);
         }
       });
-      // TODO: update notification
+      checkbox_update_alert('Languages updated by another user.');
     }
   }
 });
