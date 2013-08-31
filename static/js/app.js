@@ -312,7 +312,7 @@ function newuser_action(data, lid, svg_area) {
 
     user_container.append('text')
         .classed('newuser-label', true)
-        .attr('transform', 'translate(' + y +', 45)')
+        .attr('transform', 'translate(' + 0 +', 45)')
         .transition()
         .delay(1500)
         .duration(1000)
@@ -413,13 +413,13 @@ var epm_container = {};
 function update_epm(epm, svg_area) {
     if (!epm_text) {
         epm_container = svg_area.append('g')
-            .attr('transform', 'translate(0, ' + (height - 100) + ')');
+            // .attr('transform', 'translate(0, ' + (height - 100) + ')');
 
         var epm_box = epm_container.append('rect')
             .attr('fill', newuser_box_color)
             .attr('opacity', 0.5)
             .attr('width', 620)
-            .attr('height', 150);
+            .attr('height', 100);
 
         epm_text = epm_container.append('text')
             .classed('newuser-label', true)

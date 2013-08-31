@@ -13,10 +13,14 @@
 
 @media (min-width: 6000px) {
   #mt-info h1 {
-    font-size: 90px;
+    font-size: 100px;
+    margin-top: 80px;
   }
   #mt-info p {
     font-size: 32px;
+    padding-bottom: 26px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   #mt-info .controller {
@@ -29,6 +33,8 @@
 
 #mt-info h1 {
   color: white;
+  text-align: center;
+  padding: 0;
 }
 
 
@@ -51,17 +57,34 @@ p {
 }
 
 #active_languages {
-  position:absolute;
-  top: 50;
-  left:0;
-  background-color: rgba(41, 128, 185, 0.9);
+  color: white;
+  float: left;
+  height: 100%;
+  background-color: #1A1E22;
   padding: 10px;
+  width: 12.5%;
+  padding: 20px;
+  padding-top: 100px;
   /*opacity: 0.5;*/
 }
 
-#active_languages ul {
-  padding: 0;
+#active_languages h1 {
+  color: white;
+  font-size: 142px;
+  text-align: center;
+  padding: 40px 0 20px 0;
   margin: 0;
+}
+
+#active_languages h2 {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+#active_languages ul {
+  -webkit-column-count: 2;
 }
 
 #active_languages li{
@@ -75,7 +98,7 @@ p {
 }
 
 #control_url {
-  font-size: 2em;
+  font-size: 50px;
   font-weight: bold;
 }
 
@@ -89,7 +112,7 @@ p {
 
 #qrcode {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
