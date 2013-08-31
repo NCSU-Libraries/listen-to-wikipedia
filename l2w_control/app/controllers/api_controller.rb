@@ -35,9 +35,8 @@ class ApiController < ApplicationController
         fh.puts YAML.dump(current_enabled_languages)
       end
 
-      Pusher['presence-listen_to_wikipedia'].trigger('update', {
-        message: current_enabled_languages
-      })
+      Pusher.trigger('presence-listen_to_wikipedia','update',
+        {message: current_enabled_languages}, {socket_id: params[:socket_id]})
     else
       flash[:notice] = 'You have to select at least one Wikipedia language or data source.'
     end
@@ -71,6 +70,7 @@ class ApiController < ApplicationController
 
   def pusher_authenticate
     session[:user_id] ||= SecureRandom.random_number(10000000)
+    session[:socket_id] = params[:socket_id]
     auth_data = {
       user_id: session[:user_id]
     }

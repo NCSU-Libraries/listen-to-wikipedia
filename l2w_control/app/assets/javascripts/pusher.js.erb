@@ -22,7 +22,16 @@ channel.bind('update', function(data) {
   if ($('#wikimon_changes').length > 0) {
     show_wikimon_changes(data.message);
   } else {
-    location.reload();
+    if (data){
+      jQuery.each(data.message, function(language, language_boolean){
+        console.log(language + ": " + language_boolean)
+        if (language_boolean){
+          $('#language_' + language).prop('checked', true);
+        } else {
+          $('#language_' + language).prop('checked', false);
+        }
+      });
+    }
   }
 });
 

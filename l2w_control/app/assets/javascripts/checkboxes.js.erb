@@ -1,0 +1,22 @@
+$(function () {
+  $('#submit_button_for_languages_checkboxes').hide();
+
+  $('input[type=checkbox]').on('click', function(e){
+    e.preventDefault();
+    var that = $(this);
+    var frm = $('#languages_checkboxes_form');
+    var data = frm.serialize();
+    data += "&socket_id=" + pusher.connection.socket_id;
+
+    $.ajax({
+      type: frm.attr('method'),
+      url: frm.attr('action'),
+      data: data,
+      success: function(){
+        that.prop("checked", !that.prop("checked"));
+      }
+    });
+  });
+
+
+});

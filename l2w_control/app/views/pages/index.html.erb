@@ -1,7 +1,7 @@
 <% if valid_token? %>
   <div>
     <p>Select the languages you want displayed on the Hunt Library MicroTile Immersion Theater wall.</p>
-    <%= form_tag api_submit_path do %>
+    <%= form_tag api_submit_path, id: :languages_checkboxes_form do %>
       <ul id="languages">
         <% WIKIPEDIA_LANGUAGES.each do |language| %>
           <li>
@@ -11,7 +11,7 @@
         <% end %>
       </ul>
       <span id="submit_btn">
-      <%= submit_tag 'Submit', class: [:submit_btn, :btn, 'btn-large', 'btn-success'] %>
+      <%= submit_tag 'Submit', class: [:submit_btn, :btn, 'btn-large', 'btn-success'], id: :submit_button_for_languages_checkboxes %>
       </span>
     <% end %>
   </div>

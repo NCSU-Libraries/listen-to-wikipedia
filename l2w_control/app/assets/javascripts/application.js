@@ -15,3 +15,4 @@
 //= require reconnecting_websocket
 //= require pusher
 //= require changes
+//= require checkboxes
