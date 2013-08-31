@@ -312,7 +312,7 @@ function newuser_action(data, lid, svg_area) {
 
     user_container.append('text')
         .classed('newuser-label', true)
-        .attr('transform', 'translate(' + 0 +', 45)')
+        .attr('transform', 'translate(' + 2000 +', 45)')
         .transition()
         .delay(1500)
         .duration(1000)

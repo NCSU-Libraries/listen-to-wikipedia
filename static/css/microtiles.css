@@ -1,3 +1,7 @@
+html, body {
+  background-color: #1A1E22 !important;
+}
+
 #mt-info {
   float: right;
   width: 18%;
