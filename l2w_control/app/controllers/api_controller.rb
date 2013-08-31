@@ -37,8 +37,10 @@ class ApiController < ApplicationController
 
       Pusher.trigger('presence-listen_to_wikipedia','update',
         {message: current_enabled_languages}, {socket_id: params[:socket_id]})
+      head 200
     else
-      flash[:notice] = 'You have to select at least one Wikipedia language or data source.'
+      #flash[:notice] = 'You have to select at least one Wikipedia language or data source.'
+      head 401
     end
 
     redirect_to :back if !request.xhr?

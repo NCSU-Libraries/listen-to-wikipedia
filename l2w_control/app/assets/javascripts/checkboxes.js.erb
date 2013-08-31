@@ -4,6 +4,8 @@ $(function () {
   $('input[type=checkbox]').on('click', function(e){
     e.preventDefault();
     var that = $(this);
+
+    var language = that.siblings('label')[0].innerHTML;
     var frm = $('#languages_checkboxes_form');
     var data = frm.serialize();
     data += "&socket_id=" + pusher.connection.socket_id;
@@ -13,10 +15,27 @@ $(function () {
       url: frm.attr('action'),
       data: data,
       success: function(){
-        that.prop("checked", !that.prop("checked"));
+        var checked_state = that.prop("checked");
+        that.prop("checked", !checked_state);
+        var message = language;
+        // If it was initially checked=true then it is being removed.
+        if (checked_state) {
+          message += ' removed.';
+        } else {
+          message += ' added.';
+        }
+        checkbox_update_alert(message);
+      },
+      error: function(){
+        checkbox_update_alert('You cannot remove the last language!', 'error');
       }
     });
   });
 
+  function checkbox_update_alert(message, alert_type){
+    var notice = '<div class="checkbox_change_alert '+ alert_type +'">' + message + '</div>';
+    $('body').append(notice);
+    $('.checkbox_change_alert').fadeOut(2000, function() { $(this).remove(); });
+  }
 
 });
