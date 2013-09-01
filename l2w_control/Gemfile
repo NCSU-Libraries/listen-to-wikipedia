@@ -9,6 +9,7 @@ gem 'pusher'
 # gem 'modernizr'
 # gem 'geocoder'
 gem 'whenever', :require => false
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'pry-rails'

@@ -79,8 +79,11 @@ wikipediaSocket.init = function(ws_url, lid) {
                             data.revert = false;
                         }
 
-                        // link to article
 
+                        // remove the waiting message
+                        $('#waiting_for_changes').remove();
+
+                        // link to article
                         var data_url = data.url.replace(/&oldid=\d{1,100}/, '');
                         data_url = data_url.replace('?diff=', '?oldid=');
                         data_url += '&mobileaction=toggle_view_mobile';
