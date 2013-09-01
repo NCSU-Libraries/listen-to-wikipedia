@@ -27,12 +27,19 @@ channel.bind('update', function(data) {
         console.log(language + ": " + language_boolean)
         // If it is true check the box if it isn't uncheck the box
         if (language_boolean){
+          if (!$('#language_' + language).prop('checked')){
+            checkbox_update_alert(wikimon_langs[language][0] + ' added by another user.');
+          }
           $('#language_' + language).prop('checked', true);
+
         } else {
+          if ($('#language_' + language).prop('checked')){
+            checkbox_update_alert(wikimon_langs[language][0] + ' removed by another user.');
+          }
           $('#language_' + language).prop('checked', false);
         }
       });
-      checkbox_update_alert('Languages updated by another user.');
+      // checkbox_update_alert('Languages updated by another user.');
     }
   }
 });
