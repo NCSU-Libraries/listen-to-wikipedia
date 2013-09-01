@@ -40,7 +40,7 @@ class ApiController < ApplicationController
       head 200
     else
       #flash[:notice] = 'You have to select at least one Wikipedia language or data source.'
-      head 401
+      render json: {message: 'You cannot remove the last language!'}, status: 401
     end
 
     redirect_to :back if !request.xhr?

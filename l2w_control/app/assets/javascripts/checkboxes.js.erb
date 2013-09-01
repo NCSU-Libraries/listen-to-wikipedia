@@ -28,8 +28,8 @@ $(function () {
         }
         checkbox_update_alert(message);
       },
-      error: function(){
-        checkbox_update_alert('You cannot remove the last language!', 'error');
+      error: function(request, status, error){
+        checkbox_update_alert(request.responseJSON.message, 'error');
       }
     });
   });
