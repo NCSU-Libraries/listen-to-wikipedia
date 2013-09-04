@@ -5,6 +5,7 @@
 // };
 
 var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://d.lib.ncsu.edu/l2w/api/wall_authenticate'});
+// var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://localhost:3000/api/wall_authenticate'});
 var channel = pusher.subscribe('presence-listen_to_wikipedia');
 channel.bind('update', function(data) {
   for (var key in data.message) {
