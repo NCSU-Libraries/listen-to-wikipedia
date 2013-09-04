@@ -83,6 +83,10 @@ class ApiController < ApplicationController
   # refactor this so that there is just one authenticate endpoint!
   def wall_authenticate
     session[:user_id] ||= "wall_" + SecureRandom.random_number(10000000).to_s
+    if request.ip == HUNT_WALL_IP
+      session[:user_id] = 'hunt_' + session[:user_id]
+    end
+
     auth_data = {
       user_id: session[:user_id]
     }

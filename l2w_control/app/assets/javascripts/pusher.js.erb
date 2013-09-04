@@ -51,7 +51,7 @@ channel.bind('pusher:subscription_succeeded', function(members){
 })
 
 channel.bind('pusher:member_removed', function(member){
-  if (member.id.toString().indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
     $('#offline').show();
     $('#online').hide();
   }
@@ -60,7 +60,7 @@ channel.bind('pusher:member_removed', function(member){
 })
 
 channel.bind('pusher:member_added', function(member){
-  if (member.id.toString().indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
     $('#offline').hide();
     $('#online').show();
   }
@@ -69,7 +69,7 @@ channel.bind('pusher:member_added', function(member){
 })
 
 function check_members(member){
-  if (member.id.toString().indexOf("wall_") == 0 ) {
+  if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
     $('#offline').hide();
     $('#online').show();
   }
