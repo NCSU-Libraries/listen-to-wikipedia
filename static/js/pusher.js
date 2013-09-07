@@ -4,17 +4,30 @@
 //   }
 // };
 
+var checkbox_update_alert_message = function(message, alert_type){
+    var notice = '<div class="checkbox_change_alert '+ alert_type +'">' + message + '</div>';
+    $('body').append(notice);
+    $('.checkbox_change_alert').fadeOut(2000, function() { $(this).remove(); });
+  }
+
 var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://d.lib.ncsu.edu/l2w/api/wall_authenticate'});
 // var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://localhost:3000/api/wall_authenticate'});
 var channel = pusher.subscribe('presence-listen_to_wikipedia');
 channel.bind('update', function(data) {
   for (var key in data.message) {
-    $('#active_languages .' + key).remove();
     if (data.message[key] == true){
       enable(key);
-      $('#active_languages ul').append('<li class="' + key + '">'+ langs[key][0] + '</li>');
+      if ($('#active_languages .' + key).length == 0) {
+        checkbox_update_alert_message(langs[key][0] + " added.", 'added');
+
+        $('#active_languages ul').append('<li class="' + key + '">'+ langs[key][0] + '</li>');
+      }
     } else {
       disable(key);
+      if ($('#active_languages .' + key).length > 0) {
+        checkbox_update_alert_message(langs[key][0] + " removed.", 'removed')
+        $('#active_languages .' + key).remove();
+      }
     }
   }
 });
