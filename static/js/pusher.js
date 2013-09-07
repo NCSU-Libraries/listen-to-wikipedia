@@ -12,6 +12,7 @@ var checkbox_update_alert_message = function(message, alert_type){
 
 var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://d.lib.ncsu.edu/l2w/api/wall_authenticate'});
 // var pusher = new Pusher('bef9976092c8ba1e7452', {authEndpoint: 'http://localhost:3000/api/wall_authenticate'});
+
 var channel = pusher.subscribe('presence-listen_to_wikipedia');
 channel.bind('update', function(data) {
   for (var key in data.message) {
@@ -36,6 +37,7 @@ channel.bind('pusher:subscription_succeeded', function() {
   setTimeout(function(){
     $.ajax({
       url: "http://d.lib.ncsu.edu/l2w/api/push_update"
+      // url: "http://localhost:3000/api/push_update"
     });
   },2000);
 });

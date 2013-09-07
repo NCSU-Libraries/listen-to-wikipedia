@@ -37,6 +37,8 @@ class ApiController < ApplicationController
 
       Pusher.trigger('presence-listen_to_wikipedia','update',
         {message: current_enabled_languages}, {socket_id: params[:socket_id]})
+
+      EnabledLanguagesLogger.info "#{session[:user_id]}: #{params['language'].keys.to_json}"
       head 200
     else
       #flash[:notice] = 'You have to select at least one Wikipedia language or data source.'
@@ -59,10 +61,15 @@ class ApiController < ApplicationController
     render json: {token: current_tokens.last}
   end
 
+  # the wall calls this when it first connects in order to get the updated list of languages
   def push_update
+    enabled_languages = load_enabled_languages
     Pusher['presence-listen_to_wikipedia'].trigger('update', {
-      message: load_enabled_languages
+      message: enabled_languages
     })
+    # Do logging of startup languages.
+    enabled_languages_list = enabled_languages.map{|key, value| key if value}.compact
+    EnabledLanguagesLogger.info 'START:' + enabled_languages_list.to_json
     head 200
   end
 

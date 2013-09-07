@@ -1,4 +1,5 @@
-require 'l2w/loggers'
+require 'l2w/url_source_logger'
+require 'l2w/hunt_wall_connection_logger'
 
 module L2w
 
