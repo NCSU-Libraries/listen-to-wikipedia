@@ -1,3 +1,5 @@
+require 'l2w/loggers'
+
 module L2w
 
   def self.create_token

@@ -7,9 +7,9 @@ class ApiController < ApplicationController
     path = params[:path].dup
     if path.match %r{/qr}
       path = path.slice(0,3)
-      UrlSourceLogger.info 'QR'
+      UrlSourceLogger.info 'QR: ' + path
     else
-      UrlSourceLogger.info 'URL'
+      UrlSourceLogger.info 'URL: ' + path
     end
     if current_tokens.include?(path)
       session[:token] = path
@@ -85,6 +85,7 @@ class ApiController < ApplicationController
     session[:user_id] ||= "wall_" + SecureRandom.random_number(10000000).to_s
     if request.ip == HUNT_WALL_IP
       session[:user_id] = 'hunt_' + session[:user_id]
+      HuntWallConnectionLogger.info session[:user_id]
     end
 
     auth_data = {
