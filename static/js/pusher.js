@@ -42,6 +42,15 @@ channel.bind('pusher:subscription_succeeded', function() {
   },2000);
 });
 
+// channel.bind('pusher:member_removed', function(member){
+//   checkbox_update_alert_message('Remote control user removed.', 'removed');
+// });
+
+channel.bind('pusher:member_added', function(member){
+  var channel_members_count = channel.members.count - 1;
+  checkbox_update_alert_message('Remote control users: ' + channel_members_count, 'added');
+});
+
 
 function get_current_token(){
   $.ajax({

@@ -48,7 +48,7 @@ channel.bind('pusher:subscription_succeeded', function(members){
   members.each(check_members);
   $('#controller_count').html(members.count);
   // console.log("Count", members.count)
-})
+});
 
 channel.bind('pusher:member_removed', function(member){
   if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
@@ -57,7 +57,7 @@ channel.bind('pusher:member_removed', function(member){
   }
   $('#controller_count').html(channel.members.count);
   // console.log("Count", channel.members.count)
-})
+});
 
 channel.bind('pusher:member_added', function(member){
   if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
@@ -66,7 +66,7 @@ channel.bind('pusher:member_added', function(member){
   }
   $('#controller_count').html(channel.members.count);
   // console.log("Count", channel.members.count)
-})
+});
 
 function check_members(member){
   if (member.id.toString().indexOf("hunt_wall_") == 0 ) {
