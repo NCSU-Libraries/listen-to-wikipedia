@@ -196,9 +196,9 @@ wikipediaSocket.init = function(ws_url, lid, svg_area) {
                         rc_str += ' <span class="lang">(' + lid + ')</span>';
 
                         // change the active languages to bold for a moment
-                        $('#active_languages ul li.' + lid).css('font-weight', 'bold');
+                        $('#active_languages ul li.' + lid).addClass('active');
                         setTimeout(function(){
-                            $('#active_languages ul li.' + lid).css('font-weight', 'normal');
+                            $('#active_languages ul li.' + lid).removeClass('active');
                         },300);
                         //
 

@@ -76,7 +76,7 @@ p {
   color: white;
   font-size: 142px;
   text-align: center;
-  padding: 40px 0 20px 0;
+  padding: 0px 0 20px 0;
   margin: 0;
 }
 
@@ -95,6 +95,11 @@ p {
   list-style-type: none;
   font-size: 62px;
   line-height: 70px;
+  /*font-weight:bold;*/
+}
+
+#active_languages li.active {
+  color: #FCFF8C;
 }
 
 .newuser-label {
